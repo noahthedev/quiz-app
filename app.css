@@ -8,9 +8,9 @@
 */
 
 body {
-background-image: url("negroni.jpg");
+/*background-image: url("http://www.allwhitebackground.com/images/7/Pineapple-Background-HD-Photos.jpg");*/
 background-size: cover;
-
+font-family: helvetica;
 }
 
 h1 {

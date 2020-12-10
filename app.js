@@ -196,7 +196,7 @@ function handleStartClick() {
 }
 
 function handleQuestionFormSubmission() {
-  $('body').on('submit', '#question-form', event => {
+  $('main').on('submit', '#question-form', event => {
       event.preventDefault();
       let answerStatus = '';
       if ($('input[name=options]:checked').val() === store.questions[store.questionNumber].correctAnswer) {
@@ -205,14 +205,14 @@ function handleQuestionFormSubmission() {
       }
       else {
         answerStatus = 'incorrect';
-      }
+      };
       $('form').html(generateFeedback(answerStatus));
       store.questionNumber++;
     });
 }
 
 function handleNextQuestionClick() {
-  $('body').on('click', '#next-question-button', () => {
+  $('main').on('click', '#next-question-button', () => {
       render();
     });
 }
