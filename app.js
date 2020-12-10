@@ -86,48 +86,46 @@ function generateWelcome() {
 }
 
 function generateAnswers() {
-  let answersHtml = '';
-  let i = 0;
+  let answers = '';
+  let i = 1;
   (store.questions[store.questionNumber].answers).forEach( answer => {
-    answersHtml += `
-      <div id="option-container-${i}">
-        <input type="radio" name="options" id="option${i + 1}" value= "${answer}" tabindex ="${i + 1}" required> 
-        <label for="option${i + 1}"> ${answer}</label>
+    answers += `
+      <div id="option-div-${i}">
+        <input type="radio" name="options" id="option${i}" value="${answer}" required> 
+        <label for="option${i}">${answer}</label>
       </div>
     `;
     i++;
   });
-  return answersHtml;
+  return answers;
 }
 
 function generateQuestion() {
   return `
-    <form id="question-form" class="question-form">
-        <div class="question">
-          ${store.questions[store.questionNumber].question}
-        </div>
-        <div class="options">
-          <div class="answers">
-            ${generateAnswers()}
-          </div>
-        </div>
-        <button type="submit" id="submit-answer-button">Submit</button>
+    <form id="question-form">
+      <div id="question">
+        ${store.questions[store.questionNumber].question}
+      </div>
+      <br>
+      <div id="answers">
+        ${generateAnswers()}
+      </div>
+      <br>
+      <button type="submit" id="submit-answer-button">Submit</button>
     </form>
-    <div id="question-result">
-    </div> 
   `;
 }
 
 function generateQuestionNumberAndScore() {
   return `
-    <ul class="question-and-score">
-      <li id="question-number">
-        Question Number: ${store.questionNumber + 1} of ${store.questions.length}
-      </li>
-      <li id="score">
-        Score: ${store.score}/${store.questions.length}
-      </li>
-    </ul>
+    <div id="number-and-score">
+      <p>
+        Question: ${store.questionNumber+1} of ${store.questions.length}
+      </p>
+      <p>
+        Score: ${store.score} of ${store.questions.length}
+      </p>
+    </div>
   `;
 }
 
@@ -135,31 +133,30 @@ function generateFeedback(answerStatus) {
   let html = '';
   if (answerStatus === 'correct') {
     html = `
-    <div class="right-answer">That is correct!</div>
+      <form id="correct-answer">
+        <div>That is correct!</div>
     `;
   }
   else if (answerStatus === 'incorrect') {
     html = `
-      <div class="wrong-answer">That is incorrect. The correct answer is ${store.questions[store.questionNumber].correctAnswer}.</div>
+      <form id="incorrect answer"> 
+        <div>That is incorrect. The correct answer is ${store.questions[store.questionNumber].correctAnswer}.</div>
     `;
   };
   html += `
-  <button type="button" id="next-question-button">Next</button>
+    <br>
+    <button type="button" id="next-question-button">Next</button>
+  </form>
   `;
+  html += generateQuestionNumberAndScore();
   return html;
 }
 
 function generateResultsScreen() {
   return `
-    <div class="results">
-      <form id="js-restart-quiz"> 
-        <div>
-          <p>Your Score is: ${store.score}/${store.questions.length}</p>
-        </div>
-        <div>
-          <button type="button" id="restart"> Restart Quiz </button>
-        </div>
-      </form>
+    <div id="results">
+      <p>Your Score is: ${store.score} of ${store.questions.length}</p>
+      <button type="button" id="restart-button"> Restart Quiz </button>
     </div>
   `;
 }
@@ -189,7 +186,7 @@ function render() {
 // These functions handle events (submit, click, etc)
 
 function handleStartClick() {
-  $('main').on('click', '#start', event => {
+  $('main').on('click', '#start', () => {
     store.quizStarted = true;
     render();
   });
@@ -206,7 +203,7 @@ function handleQuestionFormSubmission() {
       else {
         answerStatus = 'incorrect';
       };
-      $('form').html(generateFeedback(answerStatus));
+      $('main').html(generateFeedback(answerStatus));
       store.questionNumber++;
     });
 }
@@ -218,7 +215,7 @@ function handleNextQuestionClick() {
 }
 
 function handleRestartButtonClick() {
-  $('body').on('click', '#restart', () => {
+  $('body').on('click', '#restart-button', () => {
   store.quizStarted = false;
   store.questionNumber = 0;
   store.score = 0;;
