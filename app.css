@@ -29,6 +29,9 @@ form, #welcome, #results {
 
 h1, #welcome, #results, #number-and-score {
   text-align: center;
-  
+}
+
+#answers {
+  line-height: 1.5;
 }
 

@@ -79,7 +79,8 @@ const store = {
 function generateWelcome() {
   return `
     <div id="welcome">
-      <p>Welcome! Press the start button to begin this quiz.</p>
+      <p>Welcome! This quiz will test your knowledge on classic cocktails. Press the start button to begin this quiz.</p>
+      <br>
       <button type="button" id="start" autofocus>Start Quiz</button>
     </div>
   `;
@@ -133,14 +134,14 @@ function generateFeedback(answerStatus) {
   let html = '';
   if (answerStatus === 'correct') {
     html = `
-      <form id="correct-answer">
-        <div>That is correct!</div>
+      <form>
+        <div>You got it!</div>
     `;
   }
   else if (answerStatus === 'incorrect') {
     html = `
-      <form id="incorrect answer"> 
-        <div>That is incorrect. The correct answer is ${store.questions[store.questionNumber].correctAnswer}.</div>
+      <form> 
+        <div>Ooh...not this time. The correct answer is "${store.questions[store.questionNumber].correctAnswer}".</div>
     `;
   };
   html += `
@@ -155,8 +156,10 @@ function generateFeedback(answerStatus) {
 function generateResultsScreen() {
   return `
     <div id="results">
-      <p>Your Score is: ${store.score} of ${store.questions.length}</p>
-      <button type="button" id="restart-button"> Restart Quiz </button>
+      <p>
+      Thanks for taking this quiz! Your Score is ${store.score} out of ${store.questions.length}. To play again, press restart.
+      </p>
+      <button type="button" id="restart-button">Restart Quiz</button>
     </div>
   `;
 }
