@@ -14,7 +14,8 @@ font-family: helvetica;
 }
 
 h1 {
-  text-align: center;
+  font-family: 'Langar', cursive;
+  font-size: 50px;
   padding: 20px;
 }
 
@@ -26,14 +27,8 @@ form, #welcome, #results {
   border-radius: 10px;
 }
 
-#welcome, #results {
+h1, #welcome, #results, #number-and-score {
   text-align: center;
   
 }
-
-#number-and-score {
-  list-style: none;
-  text-align: center;
-}
-
 
