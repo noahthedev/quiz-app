@@ -10,14 +10,26 @@
 h1 {
   text-align: center;
   font-family: helvetica;
+  padding: 20px;
 }
 
-/*.welcome-screen {
-  display: flex;
-  flex-direction: column;
-  width: 75%;
-  border: 1px solid;
-  padding: 40px;
-  margin: 40px;
+#welcome, #js-restart-quiz {
+  display: block;
+  text-align: center;
+}
 
-}*/
+.question-and-score {
+  list-style: none;
+  text-align: center;
+}
+
+form {
+  margin-left: 15%;
+  margin-right: 15%;
+  width: 70%;
+}
+
+#question-result {
+  text-align: center;
+}
+
