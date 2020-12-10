@@ -157,7 +157,7 @@ function generateResultsScreen() {
   return `
     <div id="results">
       <p>
-      Thanks for taking this quiz! Your Score is ${store.score} out of ${store.questions.length}. To play again, press restart.
+      Thanks for taking this quiz! Your score is ${store.score} out of ${store.questions.length}. To play again, press restart.
       </p>
       <button type="button" id="restart-button">Restart Quiz</button>
     </div>
