@@ -7,6 +7,12 @@
   *
 */
 
+body {
+background-image: url("negroni.jpg");
+background-size: cover;
+
+}
+
 h1 {
   text-align: center;
   font-family: helvetica;
